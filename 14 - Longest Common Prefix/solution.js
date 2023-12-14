@@ -62,3 +62,26 @@ var longestCommonPrefix = function (strs) {
     }
     return result
 };
+
+// solution i found using indexOf
+
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+var longestCommonPrefix = function (strs) {
+    if (strs.length === 0) {    // first a quick check to return "" if strs is empty
+        return ""
+    }
+    let result = strs[0]        // copy the first word to check every other
+
+    for (let i = 1; i < strs.length; i++) {     // start with the second word
+        while (strs[i].indexOf(result) !== 0) {                 // while result is not found within strs[i]
+            result = result.substring(0, result.length - 1)     // take the last letter of result and try again
+            if (result === "") {                // if result cant still isn't found within strs[i], return ""
+                return result
+            }
+        }
+    }
+    return result
+};
