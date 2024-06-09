@@ -19,3 +19,40 @@ var lengthOfLastWord = function(s) {
     // return the length of solution, or prevSolution if solution was cleared
     return (solution.length !== 0 ? solution.length : prevSolution.length)
 };
+
+// changed use of arrays to just a counter
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLastWord = function(s) {
+    let solution = 0
+    let prevSolution = 0
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] === ' ') {
+            if (solution !== 0) prevSolution = solution
+            solution = 0
+        } else {
+            solution++
+        }
+    }
+    return (solution !== 0 ? solution : prevSolution)
+};
+
+// trim spaces after string to eliminate a check
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLastWord = function(s) {
+    s = s.trim()
+    let solution = 0
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] !== ' ') {
+            solution++
+        } else {
+            solution = 0
+        }
+    }
+    return solution
+};
